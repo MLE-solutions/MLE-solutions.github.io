@@ -1,31 +1,30 @@
 ---
+console.log(Astro.props);
+
 interface Props {
   id?: string;
   title?: string;
   subtitle?: string;
+  sectionClass?: string;  
 }
 
 const {
   id,
   title,
-  subtitle
+  subtitle,
+  sectionClass: sectionClassName = ""
 } = Astro.props;
 ---
 
 <section
   id={id}
-  class="
-    mx-auto
-    max-w-6xl
-    px-6
-    py-20
-  "
+  class={`mx-auto max-w-6xl px-6 py-20 ${sectionClassName}`}
 >
 
   {
     title && (
       <h2
-        class="
+        sectionClass="
           text-3xl
           md:text-4xl
           font-mono
@@ -42,7 +41,7 @@ const {
   {
     subtitle && (
       <p
-        class="
+        sectionClass="
           text-[#d8d5cc]
           mb-8
         "

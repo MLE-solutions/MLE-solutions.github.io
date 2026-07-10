@@ -1,17 +1,12 @@
 ---
 const companyName = "YOUR COMPANY NAME";
 
-const terminalLines = [
-  "> initializing consultation_engine...",
-  "> loading machine_learning_modules...",
-  "> ready_for_new_challenges_"
-];
 ---
 
 <section
   id="hero"
   class="
-    min-h-screen
+    min-h-[70vh]
     bg-[#08110d]
     text-[#f4f1ea]
     flex
@@ -36,27 +31,6 @@ const terminalLines = [
     </h1>
 
 
-    <!-- Terminal animation -->
-    <div
-      id="terminal"
-      class="
-        mt-8
-        font-mono
-        text-lg
-        text-[#9ac98d]
-      "
-    >
-
-      <div id="terminal-output">
-        <div id="cursor-line">
-          <span class="cursor">█</span>
-        </div>
-      </div>
-
-      <div id="terminal-output">
-      </div>
-
-    </div>
 
 
     <!-- Rest of hero -->
@@ -91,6 +65,24 @@ const terminalLines = [
       </p>
 
     </div>
+    <!-- Terminal animation -->
+    <div
+      id="terminal"
+      class="
+        mt-8
+        font-mono
+        text-lg
+        text-[#9ac98d]
+      "
+    >
+
+      <div id="terminal-output">
+        <div id="cursor-line">
+          <span class="cursor">█</span>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 
@@ -98,12 +90,19 @@ const terminalLines = [
 
 
 <script>
-const lines = [
-  "> initializing_consultation_engine...",
-  "> loading_machine_learning_modules...",
-  "> ready_for_new_challenges_"
+const terminalLines = [
+  "> loading_company_profile...",
+  "> indexing_selected_projects...",
+  "> identifying_founders...",
+  "> opening_communication_channels..."
 ];
 
+const sectionIds = [
+  "about",
+  "projects",
+  "founders",
+  "contact"
+];
 
 const sleep = (ms) =>
   new Promise(resolve => setTimeout(resolve, ms));
@@ -142,9 +141,8 @@ console.log("Terminal animation started");
 
 
   let cursor = document.querySelector(".cursor");
-
-  for (const line of lines) {
-
+  for(let i = 0; i < terminalLines.length; i++){
+    const line = terminalLines[i];
     // remove old cursor
     cursor.remove();
 
@@ -170,8 +168,8 @@ console.log("Terminal animation started");
     lineElement.appendChild(cursor);
 
 
-    // blink before typing
-    await blinkCursor(cursor);
+    // blink before typing - times regulates speed of line appearances
+    await blinkCursor(cursor, 0.5);
 
 
     // remove cursor while typing
@@ -179,6 +177,18 @@ console.log("Terminal animation started");
 
 
     await typeLine(lineElement, line);
+    await sleep(250);
+
+    // Reveal matching section
+console.log("Looking for:", sectionIds[i]);
+    if(sectionIds[i]){
+       const section = document.getElementById(sectionIds[i]);
+       console.log(section);
+       if(section){
+         section.classList.add("visible");
+       }
+    }
+
 
 
     // add cursor after text
@@ -187,7 +197,7 @@ console.log("Terminal animation started");
   }
 
 
-  await sleep(500);
+  await sleep(250);
 
 
   content.classList.remove("opacity-0");
