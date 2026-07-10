@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html {
     scroll-behavior: smooth;
 }
@@ -7,4 +11,36 @@ body {
     font-family: Inter, sans-serif;
     background: #fafafa;
     color: #222;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+/* Retro terminal cursor animation */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: #9ac98d;
+}
+
+.cursor-idle {
+  animation: blink 1s infinite;
 }

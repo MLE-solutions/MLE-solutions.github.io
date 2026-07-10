@@ -1,0 +1,205 @@
+---
+const companyName = "YOUR COMPANY NAME";
+
+const terminalLines = [
+  "> initializing consultation_engine...",
+  "> loading machine_learning_modules...",
+  "> ready_for_new_challenges_"
+];
+---
+
+<section
+  id="hero"
+  class="
+    min-h-screen
+    bg-[#08110d]
+    text-[#f4f1ea]
+    flex
+    items-center
+    justify-center
+  "
+>
+
+  <div class="max-w-5xl px-6">
+
+    <!-- Company name -->
+    <h1
+      class="
+        text-5xl
+        md:text-7xl
+        font-mono
+        font-bold
+        text-[#d4a72c]
+      "
+    >
+      {companyName}
+    </h1>
+
+
+    <!-- Terminal animation -->
+    <div
+      id="terminal"
+      class="
+        mt-8
+        font-mono
+        text-lg
+        text-[#9ac98d]
+      "
+    >
+
+      <div id="terminal-output">
+        <div id="cursor-line">
+          <span class="cursor">█</span>
+        </div>
+      </div>
+
+      <div id="terminal-output">
+      </div>
+
+    </div>
+
+
+    <!-- Rest of hero -->
+    <div
+      id="hero-content"
+      class="
+        opacity-0
+        transition-opacity
+        duration-1000
+        mt-10
+      "
+    >
+
+      <h2
+        class="
+          text-3xl
+          text-[#d4a72c]
+        "
+      >
+        Advanced AI + Scientific Computing Consulting
+      </h2>
+
+
+      <p
+        class="
+          mt-5
+          max-w-xl
+          text-[#d8d5cc]
+        "
+      >
+        Building intelligent systems and solving complex technical problems.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<script>
+const lines = [
+  "> initializing_consultation_engine...",
+  "> loading_machine_learning_modules...",
+  "> ready_for_new_challenges_"
+];
+
+
+const sleep = (ms) =>
+  new Promise(resolve => setTimeout(resolve, ms));
+
+
+async function blinkCursor(cursor, times = 2) {
+
+  cursor.classList.add("cursor-idle");
+
+  await sleep(times * 1200);
+
+  cursor.classList.remove("cursor-idle");
+
+}
+
+async function typeLine(element, text) {
+
+  for (const char of text) {
+
+    element.textContent += char;
+
+    await sleep(40);
+
+  }
+
+}
+
+
+async function runTerminalAnimation() {
+console.log("Terminal animation started");
+  const output = document.querySelector("#terminal-output");
+  const content = document.querySelector("#hero-content");
+
+  if (!output || !content)
+    return;
+
+
+  let cursor = document.querySelector(".cursor");
+
+
+  // Initial cursor blink
+  await blinkCursor(cursor);
+
+
+  for (const line of lines) {
+
+    // remove old cursor
+    cursor.remove();
+
+
+    // create new line
+    const lineElement =
+      document.createElement("div");
+
+
+    output.appendChild(lineElement);
+
+
+    // create cursor for this line
+    cursor =
+      document.createElement("span");
+
+
+    cursor.className = "cursor";
+
+    cursor.textContent = "█";
+
+
+    lineElement.appendChild(cursor);
+
+
+    // blink before typing
+    await blinkCursor(cursor);
+
+
+    // remove cursor while typing
+    cursor.remove();
+
+
+    await typeLine(lineElement, line);
+
+
+    // add cursor after text
+    lineElement.appendChild(cursor);
+
+  }
+
+
+  await sleep(500);
+
+
+  content.classList.remove("opacity-0");
+  cursor.classList.add("cursor-idle");
+
+}
+
+
+runTerminalAnimation();
+</script>

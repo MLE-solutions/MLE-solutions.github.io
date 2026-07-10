@@ -1,13 +1,47 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<BaseLayout title="MLE Solutions">
+<BaseLayout>
 
-<h1>MLE Solutions</h1>
+<Navbar />
 
-<p>
-Advanced AI & Scientific Computing Consulting
-</p>
+<Hero />
+
+<Section
+  id="about"
+  title="ABOUT"
+  subtitle="Company thesis goes here."
+>
+</Section>
+
+
+<Section
+  id="projects"
+  title="PROJECTS"
+>
+</Section>
+
+
+<Section
+  id="founders"
+  title="FOUNDERS"
+>
+</Section>
+
+
+<Section
+  id="contact"
+  title="CONTACT"
+>
+</Section>
+
+
+<Footer />
 
 </BaseLayout>
