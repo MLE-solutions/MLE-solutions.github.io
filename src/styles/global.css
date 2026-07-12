@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config "../../tailwind.config.mjs";
+@import "tailwindcss";
+
+
 
 html {
     scroll-behavior: smooth;
@@ -8,10 +9,11 @@ html {
 
 body {
     margin: 0;
-    font-family: Inter, sans-serif;
-    background: #fafafa;
-    color: #222;
+    font-family: var(--font-mono);
+    color: var(--color-mainheader);
 }
+
+
 
 body::before {
   content: "";
@@ -38,7 +40,7 @@ body::before {
 .cursor {
   display: inline-block;
   margin-left: 2px;
-  color: #9ac98d;
+  color: text-cursor;
 }
 
 .cursor-idle {
@@ -46,21 +48,18 @@ body::before {
 }
 
 .boot-section {
-
     opacity: 0;
 
     transform: translateY(20px);
-
     transition:
         opacity 0.8s ease,
         transform 0.8s ease;
-
 }
 
 .boot-section.visible {
-
     opacity: 1;
 
     transform: translateY(0);
 
 }
+

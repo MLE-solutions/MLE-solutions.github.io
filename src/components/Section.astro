@@ -1,6 +1,4 @@
 ---
-console.log(Astro.props);
-
 interface Props {
   id?: string;
   title?: string;
@@ -24,11 +22,11 @@ const {
   {
     title && (
       <h2
-        sectionClass="
+        class="
           text-3xl
           md:text-4xl
-          font-mono
-          text-[#d4a72c]
+          font-sora
+          text-secondheading
           mb-4
         "
       >
@@ -41,8 +39,8 @@ const {
   {
     subtitle && (
       <p
-        sectionClass="
-          text-[#d8d5cc]
+        class="
+          text-body
           mb-8
         "
       >

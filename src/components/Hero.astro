@@ -1,5 +1,5 @@
 ---
-const companyName = "YOUR COMPANY NAME";
+const companyName = "MLE Consulting";
 
 ---
 
@@ -7,8 +7,7 @@ const companyName = "YOUR COMPANY NAME";
   id="hero"
   class="
     min-h-[70vh]
-    bg-[#08110d]
-    text-[#f4f1ea]
+    text-mainheading
     flex
     items-center
     justify-center
@@ -22,9 +21,8 @@ const companyName = "YOUR COMPANY NAME";
       class="
         text-5xl
         md:text-7xl
-        font-mono
-        font-bold
-        text-[#d4a72c]
+        font-sora
+        text-mainheading
       "
     >
       {companyName}
@@ -47,7 +45,8 @@ const companyName = "YOUR COMPANY NAME";
       <h2
         class="
           text-3xl
-          text-[#d4a72c]
+	  font-manrope
+          text-secondheading
         "
       >
         Advanced AI + Scientific Computing Consulting
@@ -58,7 +57,8 @@ const companyName = "YOUR COMPANY NAME";
         class="
           mt-5
           max-w-xl
-          text-[#d8d5cc]
+	  font-manrope
+          text-body
         "
       >
         Building intelligent systems and solving complex technical problems.
@@ -70,9 +70,9 @@ const companyName = "YOUR COMPANY NAME";
       id="terminal"
       class="
         mt-8
-        font-mono
+        font-terminal
         text-lg
-        text-[#9ac98d]
+        text-terminal
       "
     >
 
@@ -132,7 +132,6 @@ async function typeLine(element, text) {
 
 
 async function runTerminalAnimation() {
-console.log("Terminal animation started");
   const output = document.querySelector("#terminal-output");
   const content = document.querySelector("#hero-content");
 
@@ -180,10 +179,8 @@ console.log("Terminal animation started");
     await sleep(250);
 
     // Reveal matching section
-console.log("Looking for:", sectionIds[i]);
     if(sectionIds[i]){
        const section = document.getElementById(sectionIds[i]);
-       console.log(section);
        if(section){
          section.classList.add("visible");
        }
