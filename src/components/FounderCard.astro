@@ -3,7 +3,7 @@ interface Props {
   name: string;
   role: string;
   bio: string;
-  image?: string;
+  image?: ImageMetadata;
   keywords?: string[];
   linkedin?: string;
   github?: string;
@@ -52,7 +52,7 @@ const {
   {
     image && (
       <img
-        src={image}
+        src={image.src}
         alt={name}
         class="
           block
