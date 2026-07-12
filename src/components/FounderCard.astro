@@ -4,72 +4,136 @@ interface Props {
   role: string;
   bio: string;
   image?: string;
+  keywords?: string[];
+  linkedin?: string;
+  github?: string;
 }
 
 const {
   name,
   role,
   bio,
-  image
+  image,
+  keywords = [],
+  linkedin,
+  github
 } = Astro.props;
 ---
 
-<div
-  class="
-    border
-    border-[#284d3c]
-    rounded-lg
-    bg-[#10251d]
-    p-6
-  "
->
+<div class="p-6">
 
+  <!-- Name -->
+  <h3
+    class="
+      text-3xl
+      font-sora
+      font-bold
+      text-mainheading
+      mb-1
+    "
+  >
+    {name}
+  </h3>
+
+  <!-- Company role -->
+  <p
+    class="
+      font-manrope
+      text-lg
+      font-semibold
+      text-accent2
+      mb-6
+    "
+  >
+    {role}
+  </p>
+
+  <!-- Headshot -->
   {
     image && (
       <img
         src={image}
         alt={name}
         class="
-          h-32
-          w-32
-          rounded-full
+          block
+          mx-auto
+          h-50
+          w-50
+          rounded-lg
           object-cover
-          mb-5
+          mb-6
         "
       />
     )
   }
 
+  <!-- Keywords -->
+  {
+    keywords.length > 0 && (
+      <p
+        class="
+          text-center
+          font-manrope
+          text-base
+	  font-bold
+          text-accent3
+          tracking-wide
+          mb-6
+        "
+      >
+        {keywords.join(" | ")}
+      </p>
+    )
+  }
 
-  <h3
-    class="
-      text-xl
-      font-mono
-      text-[#d4a72c]
-    "
-  >
-    {name}
-  </h3>
-
-
+  <!-- Biography -->
   <p
     class="
-      text-[#9ac98d]
-      font-mono
-      text-sm
-    "
-  >
-    {role}
-  </p>
-
-
-  <p
-    class="
-      mt-4
-      text-[#d8d5cc]
+      font-manrope
+      text-body
+      leading-7
+      mb-8
     "
   >
     {bio}
   </p>
+
+  <!-- Links -->
+  <div
+    class="
+      flex
+      justify-center
+      gap-6
+      text-accent2
+    "
+  >
+
+    {
+      linkedin && (
+        <a
+          href={linkedin}
+          target="_blank"
+          class="contact-link flex items-center gap-2"
+        >
+          <span>🔗</span>
+          <span>LinkedIn</span>
+        </a>
+      )
+    }
+
+    {
+      github && (
+        <a
+          href={github}
+          target="_blank"
+          class="contact-link flex items-center gap-2"
+        >
+          <span>⌘</span>
+          <span>GitHub</span>
+        </a>
+      )
+    }
+
+  </div>
 
 </div>

@@ -1,6 +1,5 @@
 ---
 const companyName = "MLE Consulting";
-
 ---
 
 <section
@@ -49,7 +48,7 @@ const companyName = "MLE Consulting";
           text-secondheading
         "
       >
-        Advanced AI + Scientific Computing Consulting
+       Scientific Solutions for Ambitious Ideas.  
       </h2>
 
 
@@ -61,7 +60,7 @@ const companyName = "MLE Consulting";
           text-body
         "
       >
-        Building intelligent systems and solving complex technical problems.
+       From startups to supercolliders, we thrive on problems that don't have Google answers. 
       </p>
 
     </div>
@@ -81,6 +80,19 @@ const companyName = "MLE Consulting";
           <span class="cursor">█</span>
         </div>
       </div>
+    <button
+      id="skip-boot"
+      class="
+        mt-6
+        font-mono
+        text-sm
+        text-terminal
+        hover:text-mainheading
+        transition-colors
+      "
+    >
+      [ ESC ] Skip Boot
+    </button>
 
     </div>
 
@@ -90,6 +102,9 @@ const companyName = "MLE Consulting";
 
 
 <script>
+const terminalCTA =
+  "SYSTEM READY — INITIATE NEW CHALLENGE";
+const companyEmail = "mailto:mle.consultants.llc@gmail.com";
 const terminalLines = [
   "> loading_company_profile...",
   "> indexing_selected_projects...",
@@ -103,32 +118,207 @@ const sectionIds = [
   "founders",
   "contact"
 ];
+let bootFinished = false;
+let skipBoot = false;
 
 const sleep = (ms) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
+async function sleepOrSkip(ms) {
+
+    if (skipBoot) return;
+
+    await sleep(ms);
+
+}
+
+function shouldSkipBoot() {
+
+    return window.location.hash !== "";
+
+}
+
+function scrollToHash() {
+
+    const hash = window.location.hash;
+
+    if (!hash)
+        return;
+
+
+    const target =
+        document.querySelector(hash);
+
+
+    if (target) {
+
+        setTimeout(() => {
+
+            target.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }, 100);
+
+    }
+
+}
 
 async function blinkCursor(cursor, times = 2) {
 
   cursor.classList.add("cursor-idle");
 
-  await sleep(times * 1200);
+  await sleepOrSkip(times * 1200);
 
   cursor.classList.remove("cursor-idle");
 
 }
 
 async function typeLine(element, text) {
+    for (const char of text) {
+    
+        element.textContent += char;
+    
+        await sleepOrSkip(40);
+    
+    }
+}
 
-  for (const char of text) {
+async function renderTerminalCTA() {
 
-    element.textContent += char;
+    const output =
+        document.querySelector("#terminal-output");
 
-    await sleep(40);
+    if (!output)
+        return;
 
-  }
+
+    const lineElement =
+        document.createElement("a");
+
+    lineElement.href =
+        companyEmail;
+
+    lineElement.className =
+        "terminal-link terminal-ready";
+
+
+    output.appendChild(lineElement);
+
+
+    const cursor =
+        document.createElement("span");
+
+    cursor.className =
+        "cursor";
+
+    cursor.textContent =
+        "█";
+
+
+    // type text first
+    await typeLine(
+        lineElement,
+       terminalCTA 
+    );
+
+
+    // put cursor immediately after text
+    lineElement.appendChild(cursor);
+
+
+    cursor.classList.add(
+        "cursor-idle"
+    );
 
 }
+function revealAllSections() {
+
+    document
+      .querySelectorAll(".boot-section")
+      .forEach(section =>
+        section.classList.add("visible"));
+
+    document
+      .querySelector("#hero-content")
+      ?.classList.remove("opacity-0");
+
+    bootFinished = true;
+
+}
+function bypassBootSequence() {
+
+    renderCompletedTerminal();
+
+    revealAllSections();
+
+
+    document
+      .getElementById("skip-boot")
+      ?.remove();
+
+
+    bootFinished = true;
+
+}
+
+function renderCompletedTerminal() {
+
+    const output =
+        document.getElementById("terminal-output");
+
+    if (!output)
+        return;
+
+
+    output.innerHTML = "";
+
+
+    terminalLines.forEach((line, i) => {
+
+        const lineElement =
+            document.createElement("a");
+
+        lineElement.href = `#${sectionIds[i]}`;
+
+        lineElement.className =
+            "terminal-link terminal-ready";
+
+
+        lineElement.textContent = line;
+
+
+        output.appendChild(lineElement);
+
+    });
+	const cta =
+	    document.createElement("a");
+	
+	cta.href =
+	    companyEmail;
+	
+	cta.className =
+	    "terminal-link terminal-ready";
+	
+	cta.textContent = terminalCTA;
+	
+	output.appendChild(cta);
+	const cursor =
+	    document.createElement("span");
+	
+	cursor.className = "cursor cursor-idle";
+	cursor.textContent = "█";
+	cta.appendChild(cursor);
+	
+	output.appendChild(cta);	
+}
+
+window.finishBoot = function () {
+    if (bootFinished) return;
+	
+    skipBoot = true;
+
+};
 
 
 async function runTerminalAnimation() {
@@ -148,9 +338,10 @@ async function runTerminalAnimation() {
 
     // create new line
     const lineElement =
-      document.createElement("div");
-
-
+      document.createElement("a");
+    lineElement.href = `#${sectionIds[i]}`;
+    lineElement.className =
+    "terminal-link";
     output.appendChild(lineElement);
 
 
@@ -176,7 +367,9 @@ async function runTerminalAnimation() {
 
 
     await typeLine(lineElement, line);
-    await sleep(250);
+    lineElement.classList.add("terminal-ready");
+    
+    await sleepOrSkip(250);
 
     // Reveal matching section
     if(sectionIds[i]){
@@ -189,19 +382,60 @@ async function runTerminalAnimation() {
 
 
     // add cursor after text
-    lineElement.appendChild(cursor);
+    if(i != terminalLines.length-1)
+	lineElement.appendChild(cursor);
 
   }
 
 
-  await sleep(250);
+  await sleepOrSkip(250);
 
 
   content.classList.remove("opacity-0");
-  cursor.classList.add("cursor-idle");
-
+  await renderTerminalCTA();
+  
+  bootFinished = true;
+  
+  sessionStorage.setItem(
+      "bootComplete",
+      "true"
+  );
 }
 
+document
+    .getElementById("skip-boot")
+    ?.addEventListener("click", () => {
 
-runTerminalAnimation();
+        if (bootFinished) return;
+
+        window.finishBoot();
+
+    });
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
+        if (bootFinished) return;
+
+        window.finishBoot();
+
+    }
+
+});
+//enable during deployment to not run animation on multiple visits
+if (
+    sessionStorage.getItem("bootComplete") ||
+    shouldSkipBoot()
+) {
+
+    bypassBootSequence();
+
+    scrollToHash();
+
+} else {
+
+    runTerminalAnimation();
+
+}
+//runTerminalAnimation();
 </script>

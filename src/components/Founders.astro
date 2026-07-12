@@ -1,0 +1,55 @@
+---
+import FounderCard from "./FounderCard.astro";
+---
+
+<!-- boot message -->
+<p class="text-terminal font-mono mb-6">
+  &gt; founders_found 
+</p>
+
+<div
+  class="
+    grid
+    md:grid-cols-[1fr_auto_1fr]
+    gap-8
+    items-start
+  "
+>
+
+  <!-- Founder 1 -->
+  <FounderCard
+    name="Dr. Justin Anguiano"
+    role="Co-founder"
+    bio="Lorem ipsum..."
+    image="../../images/justin-headshot.jpeg"
+    keywords={["keyword1", "keyword2","keyword3"]}
+    linkedin=""
+    github="https://github.com/Jphsx"
+}
+
+  />
+
+  <!-- Divider -->
+  <div
+    class="
+      hidden
+      md:flex
+      justify-center
+      self-stretch
+    "
+  >
+    <div class="founder-divider"></div>
+  </div>
+
+  <!-- Founder 2 -->
+  <FounderCard
+    name="Margaret Lazarovits"
+    role="Co-founder"
+    bio="Lorem ipsum..."
+    image="../../images/margaret-headshot.jpg"
+    keywords={["keyword1", "keyword2","keyword3"]}
+    linkedin="https://www.linkedin.com/in/margaretlazarovits/"
+    github="https://github.com/mlazarovits"
+  />
+
+</div>

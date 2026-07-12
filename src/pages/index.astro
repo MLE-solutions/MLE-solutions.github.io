@@ -5,6 +5,10 @@ import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import Footer from "../components/Footer.astro";
+import Contact from "../components/Contact.astro";
+import About from "../components/About.astro";
+import Founders from "../components/Founders.astro";
+import Projects from "../components/Projects.astro";
 ---
 
 <BaseLayout>
@@ -15,34 +19,42 @@ import Footer from "../components/Footer.astro";
 
 <Section
   id="about"
+  terminalLabel = "info.h"
   sectionClass="boot-section"
   title="ABOUT"
-  subtitle="Company thesis goes here."
+  subtitle=""
 >
+<About/>
 </Section>
 
 
 <Section
   id="projects"
+  terminalLabel = "programs.x"
   sectionClass="boot-section"
   title="PROJECTS"
 >
+<Projects/>
 </Section>
 
 
 <Section
   id="founders"
+  terminalLabel = "bios.h"
   sectionClass="boot-section"
   title="FOUNDERS"
 >
+<Founders/>
 </Section>
 
 
 <Section
   id="contact"
+  terminalLabel = "contact.c"
   sectionClass="boot-section"
   title="CONTACT"
 >
+<Contact />
 </Section>
 
 

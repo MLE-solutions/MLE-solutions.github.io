@@ -62,4 +62,120 @@ body::before {
     transform: translateY(0);
 
 }
+.terminal-window {
 
+    background:
+        rgba(42,36,56,0.85);
+
+    border:
+        1px solid rgba(184,255,215,0.15);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    backdrop-filter: blur(8px);
+
+}
+
+.terminal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding:
+        0.5rem
+        1rem;
+
+    background:
+        rgba(25,21,37,0.8);
+
+    border-bottom:
+        1px solid rgba(184,255,215,0.1);
+
+    font-family:
+        var(--font-manrope);
+
+    font-size:
+        0.85rem;
+
+}
+
+.terminal-label {
+
+    color:
+        #B8FFD7;
+
+}
+
+.terminal-buttons {
+
+    display: flex;
+
+    gap: 0.4rem;
+
+}
+
+
+.terminal-buttons span {
+
+    font-size:
+        0.7rem;
+
+    color:
+       #B9AACF;
+
+}
+
+.terminal-content {
+
+    padding:
+        2rem;
+
+}
+
+.terminal-link {
+    display: block;
+
+    color: #B8FFD7;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        color 0.3s ease,
+        padding-left 0.3s ease;
+}
+.contact-link {
+
+    color: #D3CDD9;
+
+    text-decoration: none;
+
+    transition:
+        color 0.3s ease,
+        padding-left 0.3s ease;
+
+}
+
+
+.contact-link:hover {
+
+    color: #A77FD6;
+
+    padding-left: 8px;
+}
+
+.founder-divider {
+
+    width: 1px;
+
+    height: 100%;
+
+    background: rgba(184,255,215,.18);
+
+}

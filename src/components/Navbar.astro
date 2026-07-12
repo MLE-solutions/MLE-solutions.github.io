@@ -45,8 +45,9 @@ const links = [
         links.map((link) => (
           <a
             href={link.href}
+	        data-section={link.href.replace("#", "")}	
             class="
-	      font-manrope
+    	      font-manrope
               text-sm
               text-body
               hover:text-interactive
@@ -63,3 +64,37 @@ const links = [
   </div>
 
 </nav>
+<script>
+
+document
+  .querySelectorAll("[data-section]")
+  .forEach(link => {
+
+    link.addEventListener("click", () => {
+
+      if (window.finishBoot) {
+
+        window.finishBoot();
+
+      }
+
+      const target =
+        link.getAttribute("href");
+
+
+
+
+      setTimeout(() => {
+
+        document
+          .querySelector(target)
+          ?.scrollIntoView({
+            behavior: "smooth"
+          });
+
+      }, 300);
+
+    });
+
+  });
+</script>
