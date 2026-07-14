@@ -1,0 +1,216 @@
+---
+interface Props {
+    images: string[];
+    title: string;
+}
+
+const {
+    images,
+    title
+} = Astro.props;
+
+const galleryId =
+    `gallery-${Math.random().toString(36).substring(2,9)}`;
+---
+
+<div
+  id={galleryId}
+  class="project-gallery"
+>
+
+
+<div
+  class="
+    aspect-video
+    overflow-hidden
+    rounded-lg
+    border
+    border-accent2/30
+  "
+>
+
+<img
+  class="gallery-image w-full h-full object-cover"
+  src={images[0]}
+  alt={title}
+/>
+
+</div>
+
+
+
+<!-- Controls -->
+
+<div
+ class="
+   mt-5
+   flex
+   justify-center
+   items-center
+   gap-6
+ "
+>
+
+
+<button
+ class="gallery-prev text-accent2"
+>
+◀
+</button>
+
+
+
+<div class="flex gap-3">
+
+{
+ images.map((_,i)=>(
+   
+   <span
+    class:list={[
+      "gallery-dot",
+      {"active": i===0}
+    ]}
+    data-index={i}
+   ></span>
+
+ ))
+}
+
+</div>
+
+
+
+<button
+ class="gallery-next text-accent2"
+>
+▶
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<script define:vars={{images, galleryId}}>
+
+const gallery =
+document.getElementById(galleryId);
+
+
+const image =
+gallery.querySelector(".gallery-image");
+
+
+const dots =
+gallery.querySelectorAll(".gallery-dot");
+
+
+const next =
+gallery.querySelector(".gallery-next");
+
+
+const prev =
+gallery.querySelector(".gallery-prev");
+
+
+
+let current = 0;
+
+
+
+function updateGallery(index){
+
+    current =
+    (index + images.length) % images.length;
+
+
+    image.src =
+    images[current];
+
+
+    dots.forEach((dot,i)=>{
+
+        dot.classList.toggle(
+            "active",
+            i===current
+        );
+
+    });
+
+}
+
+
+
+next.addEventListener(
+"click",
+()=>updateGallery(current+1)
+);
+
+
+
+prev.addEventListener(
+"click",
+()=>updateGallery(current-1)
+);
+
+
+
+// Mobile swipe
+
+let startX = 0;
+
+
+gallery.addEventListener(
+"touchstart",
+(e)=>{
+
+    startX =
+    e.touches[0].clientX;
+
+});
+
+
+gallery.addEventListener(
+"touchend",
+(e)=>{
+
+    const endX =
+    e.changedTouches[0].clientX;
+
+
+    const diff =
+    endX-startX;
+
+
+    if(Math.abs(diff)<40)
+        return;
+
+
+    if(diff < 0)
+        updateGallery(current+1);
+
+    else
+        updateGallery(current-1);
+
+});
+
+
+
+dots.forEach((dot)=>{
+
+    dot.addEventListener(
+    "click",
+    ()=>{
+
+        updateGallery(
+            Number(dot.dataset.index)
+        );
+
+    });
+
+});
+
+</script>

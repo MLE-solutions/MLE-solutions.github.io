@@ -1,18 +1,79 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
+
+const projects = [
+  {
+    id: "bayesian_cluster",
+    name: "bayesian_cluster/",
+  },
+  {
+    id: "scientific_ai",
+    name: "scientific_ai/",
+  },
+  {
+    id: "detector_sim",
+    name: "detector_sim/",
+  },
+  {
+    id: "robotics",
+    name: "robotics/",
+  },
+];
 ---
+
 <!-- boot message -->
-<p class="text-terminal font-mono mb-6">
-  &gt; projects_executed 
+<p class="text-terminal font-terminal mb-6">
+  &gt; projects_executed
 </p>
 
 <div
   class="
     grid
-    md:grid-cols-[1fr_auto_1fr]
-    gap-8
+    md:grid-cols-[320px_1fr] 
+    gap-10
     items-start
   "
 >
+
+  <!-- Left panel -->
+  <aside
+    class="
+      terminal-panel
+      rounded-xl
+      p-6
+    "
+  >
+
+    <p class="text-mainheading font-sora mb-4">
+      PROJECT DATABASE
+    </p>
+
+    <!--
+    <p class="text-terminal mb-4">
+      &gt; ls
+    </p>
+    -->
+
+    <div class="flex flex-col gap-2">
+
+      {
+        projects.map(project => (
+
+          <button
+            class="terminal-project"
+            data-project={project.id}
+          >
+            &gt; {project.name}
+          </button>
+
+        ))
+      }
+
+    </div>
+
+  </aside>
+
+  <!-- Right panel -->
+  <ProjectCard />
 
 </div>

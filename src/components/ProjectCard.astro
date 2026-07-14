@@ -1,99 +1,300 @@
 ---
+import ProjectGallery from "./ProjectGallery.astro";
+
 interface Props {
-  title: string;
-  description: string;
-  tags?: string[];
-  image?: string;
+  caseNumber?: string;
+  partner?: string;
+  title?: string;
+  subtitle?: string;
+
+  images?: string[];
+
+  challenge?: string;
+  technologies?: string[];
+  outcome?: string;
+
+  description?: string;
 }
 
 const {
-  title,
-  description,
-  tags = [],
-  image
+  caseNumber = "001",
+  partner = "",
+  title = "",
+  subtitle = "",
+
+  images = [],
+
+  challenge = "",
+  technologies = [],
+  outcome = "",
+
+  description = ""
+
 } = Astro.props;
 
 ---
 
-<article
+<div
   class="
-    border
-    border-[#284d3c]
-    rounded-lg
-    overflow-hidden
-    bg-[#10251d]
+    terminal-panel
+    rounded-xl
+    p-8
   "
 >
 
-  {
-    image && (
-      <img
-        src={image}
-        alt={title}
-        class="
-          w-full
-          h-48
-          object-cover
-        "
-      />
-    )
-  }
+
+  <!-- Header -->
+
+  <p
+    class="
+      font-terminal
+      text-sm
+      tracking-widest
+      text-accent2
+    "
+  >
+    CASE FILE {caseNumber}
+  </p>
 
 
-  <div class="p-6">
+  <div class="mt-5">
+
+    <p
+      class="
+        font-terminal
+        text-secondheading
+        text-base
+      "
+    >
+      PARTNER
+    </p>
 
     <h3
       class="
-        font-mono
+        font-manrope
         text-xl
-        text-[#d4a72c]
+        text-secondheading
       "
     >
-      {title}
+      {partner}
     </h3>
 
 
     <p
       class="
-        mt-3
-        text-[#d8d5cc]
+        mt-5
+        font-terminal
+        text-secondheading
+        text-base
+      "
+    >
+      PROJECT
+    </p>
+
+
+    <h2
+      class="
+        mt-1
+        text-4xl
+        font-sora
+        font-bold
+        text-mainheading
+      "
+    >
+      {title}
+    </h2>
+
+
+    {
+      subtitle && (
+        <p
+          class="
+            mt-2
+            font-manrope
+            text-body
+          "
+        >
+          {subtitle}
+        </p>
+      )
+    }
+
+  </div>
+
+
+
+  <!-- Gallery + Metadata -->
+
+  <div
+    class="
+      mt-10
+      grid
+      lg:grid-cols-[1.6fr_1fr]
+      gap-10
+    "
+  >
+
+
+    <!-- Gallery -->
+
+    <ProjectGallery images={images} title={title}/>
+
+
+
+    <!-- Details -->
+
+    <div
+      class="
+        space-y-8
+      "
+    >
+
+
+      <div>
+
+        <h3
+          class="
+            text-xl
+            font-terminal
+            text-mainheading
+          "
+        >
+          Challenge
+        </h3>
+
+        <p
+          class="
+            mt-2
+            font-manrope
+            text-body
+            leading-7
+          "
+        >
+          {challenge}
+        </p>
+
+      </div>
+
+
+
+      <div>
+
+        <h3
+          class="
+            text-xl
+            font-terminal
+            text-mainheading
+          "
+        >
+          Technologies
+        </h3>
+
+
+        <div
+          class="
+            mt-3
+            flex
+            flex-wrap
+            gap-2
+          "
+        >
+
+          {
+            technologies.map(tech => (
+
+              <span
+                class="
+                  rounded-full
+                  border
+                  border-accent2
+                  px-3
+                  py-1
+                  text-accent2
+                  font-terminal
+                  text-sm
+                "
+              >
+                {tech}
+              </span>
+
+            ))
+          }
+
+        </div>
+
+      </div>
+
+
+
+      <div>
+
+        <h3
+          class="
+            text-xl
+            font-terminal
+            text-mainheading
+          "
+        >
+          Outcome
+        </h3>
+
+
+        <p
+          class="
+            mt-2
+            font-manrope
+            text-body
+            leading-7
+          "
+        >
+          {outcome}
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- Long Description -->
+
+  <div
+    class="
+      mt-12
+      pt-8
+      border-t
+      border-accent2/20
+    "
+  >
+
+    <h3
+      class="
+        text-2xl
+        font-sora
+        text-mainheading
+      "
+    >
+      Project Overview
+    </h3>
+
+
+    <p
+      class="
+        mt-4
+        max-w-4xl
+        font-manrope
+        text-body
+        leading-8
       "
     >
       {description}
     </p>
 
-
-    <div
-      class="
-        mt-4
-        flex
-        flex-wrap
-        gap-2
-      "
-    >
-
-      {
-        tags.map(tag => (
-          <span
-            class="
-              text-xs
-              font-mono
-              border
-              border-[#5b8c5a]
-              px-2
-              py-1
-              rounded
-              text-[#9ac98d]
-            "
-          >
-            {tag}
-          </span>
-        ))
-      }
-
-    </div>
-
   </div>
 
 
-</article>
+</div>
