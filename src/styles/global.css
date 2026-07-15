@@ -224,7 +224,7 @@ body::before {
 
 .terminal-project.active {
 
-    color: var(--color-terminal);
+    color: #A77FD6;
 
     font-weight: 700;
 

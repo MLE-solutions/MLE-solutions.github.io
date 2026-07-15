@@ -2,48 +2,37 @@
 import ProjectGallery from "./ProjectGallery.astro";
 
 interface Props {
-  caseNumber?: string;
-  partner?: string;
-  title?: string;
-  subtitle?: string;
 
-  images?: string[];
+    project: CollectionEntry<"projects">;
 
-  challenge?: string;
-  technologies?: string[];
-  outcome?: string;
-
-  description?: string;
 }
 
+const { project } = Astro.props;
+
 const {
-  caseNumber = "001",
-  partner = "",
-  title = "",
-  subtitle = "",
-
-  images = [],
-
-  challenge = "",
-  technologies = [],
-  outcome = "",
-
-  description = ""
-
-} = Astro.props;
-
+    partner,
+    title,
+    subtitle,
+    description,
+    challenge,
+    technologies,
+    outcome,
+    images,
+    caseNumber
+} = project.data;
 ---
 
 <div
   class="
     terminal-panel
     rounded-xl
-    p-8
+    px-8
+    pb-8
+    pt-2
   "
 >
 
-
-  <!-- Header -->
+  <!-- Header
 
   <p
     class="
@@ -52,16 +41,18 @@ const {
       tracking-widest
       text-accent2
     "
+    id="project-case-number"
   >
-    CASE FILE {caseNumber}
+    CASE FILE {project.data.caseNumber}
   </p>
-
+ -->
 
   <div class="mt-5">
 
     <p
       class="
-        font-terminal
+        font-sora
+        font-bold
         text-secondheading
         text-base
       "
@@ -73,17 +64,19 @@ const {
       class="
         font-manrope
         text-xl
-        text-secondheading
+        text-mainheading
       "
+      id="project-partner"
     >
-      {partner}
+      {project.data.partner}
     </h3>
 
 
     <p
       class="
         mt-5
-        font-terminal
+        font-sora
+        font-bold
         text-secondheading
         text-base
       "
@@ -100,8 +93,9 @@ const {
         font-bold
         text-mainheading
       "
+      id="project-title"
     >
-      {title}
+      {project.data.title}
     </h2>
 
 
@@ -113,8 +107,9 @@ const {
             font-manrope
             text-body
           "
+         id="project-subtitle"
         >
-          {subtitle}
+          {project.data.subtitle}
         </p>
       )
     }
@@ -132,6 +127,7 @@ const {
       lg:grid-cols-[1.6fr_1fr]
       gap-10
     "
+    id="project-gallery"
   >
 
 
@@ -147,6 +143,7 @@ const {
       class="
         space-y-8
       "
+      id="project-details"
     >
 
 
@@ -169,8 +166,9 @@ const {
             text-body
             leading-7
           "
+         id="project-challenge"
         >
-          {challenge}
+          {project.data.challenge}
         </p>
 
       </div>
@@ -197,10 +195,11 @@ const {
             flex-wrap
             gap-2
           "
+          id="project-technologies"
         >
 
           {
-            technologies.map(tech => (
+            project.data.technologies.map(tech => (
 
               <span
                 class="
@@ -246,8 +245,9 @@ const {
             text-body
             leading-7
           "
+         id="project-outcome"
         >
-          {outcome}
+          {project.data.outcome}
         </p>
 
       </div>
@@ -269,6 +269,7 @@ const {
       border-t
       border-accent2/20
     "
+    id="project-descr"
   >
 
     <h3
@@ -280,18 +281,16 @@ const {
     >
       Project Overview
     </h3>
-
-
     <p
+      id="project-description"
       class="
-        mt-4
-        max-w-4xl
         font-manrope
         text-body
         leading-8
+        whitespace-pre-line
       "
     >
-      {description}
+      {project.data.description}
     </p>
 
   </div>

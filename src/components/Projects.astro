@@ -1,24 +1,16 @@
 ---
+import { getCollection } from "astro:content";
+const projects =
+    await getCollection("projects");
+
 import ProjectCard from "./ProjectCard.astro";
 
-const projects = [
-  {
-    id: "bayesian_cluster",
-    name: "bayesian_cluster/",
-  },
-  {
-    id: "scientific_ai",
-    name: "scientific_ai/",
-  },
-  {
-    id: "detector_sim",
-    name: "detector_sim/",
-  },
-  {
-    id: "robotics",
-    name: "robotics/",
-  },
-];
+function terminalizeTitle(title) {
+  return title
+    .toLowerCase()
+    .replace(/\s+/g, "_");
+}
+
 ---
 
 <!-- boot message -->
@@ -54,16 +46,25 @@ const projects = [
     </p>
     -->
 
-    <div class="flex flex-col gap-2">
-
+    <div
+      class="
+        flex
+        flex-col
+        gap-2
+        ml-4
+      "
+    >
       {
-        projects.map(project => (
+        projects.map((project, index) => (
 
           <button
-            class="terminal-project"
+           class:list={[
+              "terminal-project",
+              { active: index === 0 }
+            ]}
             data-project={project.id}
           >
-            &gt; {project.name}
+            &gt; {terminalizeTitle(project.data.title)}
           </button>
 
         ))
@@ -74,6 +75,92 @@ const projects = [
   </aside>
 
   <!-- Right panel -->
-  <ProjectCard />
+  <ProjectCard
+    project={projects[0]}
+    id = "project-card" 
+	/>
 
 </div>
+<script define:vars={{projects}}>
+const fields = [
+    "partner",
+    "title",
+    "subtitle",
+    "description",
+    "challenge",
+    "outcome",
+];
+
+const buttons =
+document.querySelectorAll(".terminal-project");
+
+function loadProject(project){
+
+    fields.forEach(field => {
+
+        const element =
+            document.getElementById(`project-${field}`);
+
+        if(element){
+            element.textContent =
+                project.data[field] ?? "";
+        }
+
+    });
+
+
+    // Update technologies separately
+    const techContainer =
+        document.getElementById("project-technologies");
+
+    if (techContainer) {
+
+        techContainer.innerHTML = "";
+
+        project.data.technologies.forEach(tech => {
+
+            const badge =
+                document.createElement("span");
+
+            badge.className =
+            `
+            rounded-full
+            border
+            border-accent2
+            px-3
+            py-1
+            text-accent2
+            font-terminal
+            text-sm
+            `;
+
+            badge.textContent = tech;
+
+            techContainer.appendChild(badge);
+
+        });
+
+    }
+
+}
+
+buttons.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        buttons.forEach(b=>b.classList.remove("active"));
+
+        button.classList.add("active");
+
+        const project =
+            projects.find(
+                p => p.id === button.dataset.project
+            );
+
+        loadProject(project);
+
+    });
+
+});
+
+</script>
