@@ -31,13 +31,37 @@ const links = [
     "
   >
 
-    <a
-      href="/"
-      class="text-mainheading font-sora font-bold"
-    >
-      MLE CONSULTING
-    </a>
+<div class="flex items-center gap-3">
 
+  <!-- Mobile menu button -->
+  <button
+    id="mobile-menu-button"
+    class="
+        hidden
+        md:hidden
+        mt-4
+        rounded-xl
+        terminal-panel
+        overflow-hidden
+    "
+    aria-label="Open navigation"
+  >
+    ☰
+  </button>
+
+  <a
+    href="/"
+    id="mobile-menu"
+    class="
+      text-mainheading
+      font-sora
+      font-bold
+    "
+  >
+    MLE CONSULTING
+  </a>
+
+  </div>
 
     <div class="hidden md:flex gap-6">
 
@@ -61,10 +85,43 @@ const links = [
 
     </div>
 
+  <div
+    id="mobile-menu"
+    class="
+      hidden
+      md:hidden
+      mt-3
+    "
+  >
+  
+    {
+      links.map(link => (
+  
+        <a
+          href={link.href}
+          class="
+            block
+            py-3
+            px-2
+            font-manrope
+            text-body
+            hover:text-interactive
+          "
+        >
+          {link.name}
+        </a>
+  
+      ))
+    }
+  
+  </div>
+
   </div>
 
 </nav>
 <script>
+
+
 
 document
   .querySelectorAll("[data-section]")
@@ -97,4 +154,15 @@ document
     });
 
   });
+const button =
+    document.getElementById("mobile-menu-button");
+
+const menu =
+    document.getElementById("mobile-menu");
+
+button?.addEventListener("click", () => {
+
+    menu?.classList.toggle("hidden");
+
+});
 </script>

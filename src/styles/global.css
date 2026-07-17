@@ -259,3 +259,8 @@ body::before {
     cursor:pointer;
 
 }
+.mobile-menu {
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
