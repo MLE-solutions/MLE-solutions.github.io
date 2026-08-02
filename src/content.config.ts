@@ -11,13 +11,10 @@ const projects = defineCollection({
     partner: z.string(),
     title: z.string(),
     subtitle: z.string(),
-    description: z.string(),
+    highlights: z.array(z.string()),
     images: z.array(z.string()),
-
     challenge: z.string().optional(),
-    technologies: z.array(z.string()),
     outcome: z.string().optional(),
-
     caseNumber: z.number().optional(),
   }),
 });
