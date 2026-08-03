@@ -86,9 +86,6 @@ const fields = [
     "partner",
     "title",
     "subtitle",
-    "description",
-    "challenge",
-    "outcome",
 ];
 
 const buttons =
@@ -109,39 +106,28 @@ function loadProject(project){
     });
 
 
-    // Update technologies separately
-    const techContainer =
-        document.getElementById("project-technologies");
-
-    if (techContainer) {
-
-        techContainer.innerHTML = "";
-
-        project.data.technologies.forEach(tech => {
-
-            const badge =
-                document.createElement("span");
-
-            badge.className =
-            `
-            rounded-full
-            border
-            border-accent2
-            px-3
-            py-1
-            text-accent2
-            font-terminal
-            text-sm
-            `;
-
-            badge.textContent = tech;
-
-            techContainer.appendChild(badge);
-
-        });
-
-    }
-
+    // Update highlight separately to retain list format
+	const highlightsList =
+	    document.getElementById("project-highlights");
+	
+	if (highlightsList) {
+	
+	    highlightsList.innerHTML = "";
+	
+	    project.data.highlights.forEach(item => {
+	
+	        const li =
+	            document.createElement("li");
+	
+	        li.className = "whitespace-pre-line";
+	
+	        li.textContent = item;
+	
+	        highlightsList.appendChild(li);
+	
+	    });
+	
+	}
 }
 
 buttons.forEach(button=>{
