@@ -11,6 +11,6 @@ highlights:
   - Constructed a large scale elevation database with over 40,000 golf courses
 
 images:
-  - images/golf1.PNG
+  - /images/golf1.PNG
 
 ---

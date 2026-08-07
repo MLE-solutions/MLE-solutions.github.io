@@ -10,7 +10,7 @@ highlights:
   - Developed novel test statistic to improve search scale tractability
   - Set the most stringent limits on a largest class of of supersymmetric models
 images:
-  - images/search1.png
+  - /images/search1.png
 
 
 
