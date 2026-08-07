@@ -10,8 +10,8 @@ highlights:
   - gets at both substructure and superstructure
   - incorporates time evolution of decay interaction with detector
 images:
-  - image1.jpg
-  - image2.jpg
+  - images/psiche1.png
+  - images/psiche2.png
 
 
 

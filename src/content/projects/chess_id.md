@@ -10,6 +10,6 @@ highlights:
   - Implemented architecturally optimized network to be deployed on a custom embedded system
 
 images:
-  - chess1.png
+  - images/chess1.png
 
 ---

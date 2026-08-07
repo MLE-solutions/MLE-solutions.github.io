@@ -32,7 +32,7 @@ const galleryId =
 <img
   class="gallery-image w-full h-full object-cover"
   src={images[0]}
-  alt={title}
+  alt={images[0]}
 />
 
 </div>
@@ -60,7 +60,10 @@ const galleryId =
 
 
 
-<div class="flex gap-3">
+<div 
+  class="flex gap-3"
+  id={`${galleryId}-dots`}
+>
 
 {
  images.map((_,i)=>(
@@ -116,19 +119,27 @@ const prev =
 gallery.querySelector(".gallery-prev");
 
 
-
+let galleryImages = images;
 let current = 0;
 
-
+const dotsContainer =
+    gallery.querySelector(`#${galleryId}-dots`);
 
 function updateGallery(index){
 
     current =
-    (index + images.length) % images.length;
-
+        (index + galleryImages.length) %
+        galleryImages.length;
 
     image.src =
-    images[current];
+    galleryImages[current];
+
+    image.alt =
+    galleryImages[current];
+
+
+    const dots =
+        gallery.querySelectorAll(".gallery-dot");
 
 
     dots.forEach((dot,i)=>{
@@ -212,5 +223,51 @@ dots.forEach((dot)=>{
     });
 
 });
+
+
+document.addEventListener(
+    "project-gallery-update",
+    (event) => {
+
+        galleryImages =
+            event.detail.images;
+
+        current = 0;
+
+        image.src =
+            galleryImages[current];
+        
+        image.alt =
+            galleryImages[current];
+
+        // Rebuild dots
+        dotsContainer.innerHTML = "";
+
+        galleryImages.forEach((_, i) => {
+
+            const dot =
+                document.createElement("span");
+
+            dot.className =
+                "gallery-dot";
+
+            if (i === 0) {
+                dot.classList.add("active");
+            }
+
+            dot.dataset.index =
+                String(i);
+
+            dot.addEventListener(
+                "click",
+                () => updateGallery(i)
+            );
+
+            dotsContainer.appendChild(dot);
+
+        });
+
+    }
+);
 
 </script>

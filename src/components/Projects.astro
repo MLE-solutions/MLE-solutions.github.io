@@ -130,6 +130,14 @@ function loadProject(project){
 	    });
 	
 	}
+	//update gallery
+	document.dispatchEvent(
+	    new CustomEvent("project-gallery-update", {
+	        detail: {
+	            images: project.data.images
+	        }
+	    })
+	);
 
    }
 

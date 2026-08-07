@@ -1,5 +1,5 @@
 ---
-partner: Noonan
+partner: Noonan Caddie
 linktitle: golf stats 
 title: Digital Caddie Golf App
 subtitle: Probabalistic golf shot prediction and optimization
@@ -11,6 +11,6 @@ highlights:
   - Constructed a large scale elevation database with over 40,000 golf courses
 
 images:
-  - golf1.PNG
+  - images/golf1.PNG
 
 ---
