@@ -15,7 +15,7 @@ const projects = defineCollection({
     highlights: z.array(z.string()),
     images: z.array(z.string()),
     challenge: z.string().optional(),
-    outcome: z.string().optional(),
+    outcome: z.string(),
     caseNumber: z.number().optional(),
   }),
 });
