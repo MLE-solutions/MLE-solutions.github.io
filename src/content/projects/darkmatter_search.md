@@ -1,16 +1,16 @@
 ---
 partner: CERN/CMS
-title: Collider Search for New Fundamental Particles
-subtitle: Compressed Supersymmetric Dark Matter candidates 
-outcome: Developed new search techniques for unprecedented coverage of new supersymmetric theortical models
+linktitle: collider darkmatter 
+title: Collider Search for Darkmatter
+subtitle: Search for compressed Supersymmetric dark matter particles
+outcome: Developed new search techniques with unprecedented coverage of supersymmetric theortical models
 highlights: 
   - Leveraged custom kinemtatic approach to generate more effective physics observables
-  - Built custom NN tor particle reconstruction and identification
-  - Developed new statistical metrics and fit techniques make ambitious search scale tractable
-  - Set most stringent and inclusive limits on a large class of of supersymmetric models
+  - Implemented machine learning strategies for particle identification
+  - Developed novel test statistic to improve search scale tractability
+  - Set the most stringent limits on a largest class of of supersymmetric models
 images:
-  - image1.jpg
-  - image2.jpg
+  - search1.png
 
 
 

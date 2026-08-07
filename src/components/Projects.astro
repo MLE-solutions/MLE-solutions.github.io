@@ -64,7 +64,7 @@ function terminalizeTitle(title) {
             ]}
             data-project={project.id}
           >
-            &gt; {terminalizeTitle(project.data.title)}
+            &gt; {terminalizeTitle(project.data.linktitle)}
           </button>
 
         ))
@@ -84,6 +84,7 @@ function terminalizeTitle(title) {
 <script define:vars={{projects}}>
 const fields = [
     "partner",
+    "linktitle",
     "title",
     "subtitle",
 ];

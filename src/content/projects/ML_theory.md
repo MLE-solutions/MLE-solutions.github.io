@@ -1,5 +1,6 @@
 ---
-partner: University of Kansas?
+partner: University of Kansas
+linktitle: ML theory
 title: PSICHE Jets
 subtitle: hierarchical bayesian jet clustering 
 outcome: Developed new hierarchical clustering algorithm which is applied to particle physics particldecay clustering which the selling point is maybe pile-up mitigation

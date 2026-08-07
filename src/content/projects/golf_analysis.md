@@ -1,5 +1,6 @@
 ---
 partner: Noonan
+linktitle: golf stats 
 title: Digital Caddie Golf App
 subtitle: Probabalistic golf shot prediction and optimization
 outcome: Developed app backend for 'ScatterShotAI' which offers aim line and club recommendations based on golf simulator data and predicted shot incidence with course elements
@@ -10,7 +11,6 @@ highlights:
   - Constructed a large scale elevation database with over 40,000 golf courses
 
 images:
-  - image1.jpg
-  - image2.jpg
+  - golf1.PNG
 
 ---

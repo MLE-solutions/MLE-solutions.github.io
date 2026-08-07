@@ -9,6 +9,7 @@ const projects = defineCollection({
 
   schema: z.object({
     partner: z.string(),
+    linktitle: z.string(),
     title: z.string(),
     subtitle: z.string(),
     highlights: z.array(z.string()),
