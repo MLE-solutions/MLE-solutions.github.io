@@ -10,9 +10,9 @@ highlights:
   - Defined and commssioned testing procedures with automated database inteface with test devices
 #images need full path relative to base directory
 images:
-  - images/etl1.jpeg
-  - images/etl2.jpg
-  - images/etl3.jpg
+  - /images/etl1.jpeg
+  - /images/etl2.jpg
+  - /images/etl3.jpg
 
 
 
