@@ -1,14 +1,14 @@
 ---
 partner: University of Kansas
 linktitle: ML theory
-title: PSICHE Jets
-subtitle: hierarchical bayesian jet clustering 
-outcome: Developed new hierarchical clustering algorithm which is applied to particle physics particldecay clustering which the selling point is maybe pile-up mitigation
+title: [Probabilistic Clustering of Subatomic Particles](https://arxiv.org/abs/2609.16276)
+subtitle: Probabilistic, Structure-Intrinsic Clustering with an Hierarchical Embedding (PSICHE) For Particle Reconstruction 
+outcome: Developed new approach for clustering particles produced in high energy collisions in space and time 
 highlights: 
-  - new type of mixture model stuff
-  - scale independence jet structure  
-  - gets at both substructure and superstructure
-  - incorporates time evolution of decay interaction with detector
+  - Hierarchical statistical model simultaneously learns overall size of clusters and internal substructure 
+  - Integrated domain-specific inductive biases to reflect real-world detector effects 
+  - First algorithm to cluster subatomic particles in space and time
+  - Derived new observables from optimized model to mitigate the effect of overlapping collisions on particle reconstruction 
 images:
   - /images/psiche1.png
   - /images/psiche2.png

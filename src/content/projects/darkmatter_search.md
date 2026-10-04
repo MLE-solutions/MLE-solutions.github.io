@@ -3,7 +3,7 @@ partner: CERN and the Compact Muon Solenoid experiment
 linktitle: collider darkmatter 
 title: Collider Search for Dark Matter
 subtitle: Search for compressed Supersymmetric dark matter particles
-outcome: Developed new search techniques with unprecedented coverage of supersymmetric theortical models
+outcome: Developed new search techniques with unprecedented coverage of supersymmetric theoretical models
 highlights: 
   - Leveraged custom kinemtatic approach to generate more effective physics observables
   - Implemented machine learning strategies for particle identification
