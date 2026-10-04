@@ -1,7 +1,7 @@
 ---
 partner: University of Kansas
 linktitle: ML theory
-title: [Probabilistic Clustering of Subatomic Particles](https://arxiv.org/abs/2609.16276)
+title: Probabilistic Clustering of Subatomic Particles
 subtitle: Probabilistic, Structure-Intrinsic Clustering with an Hierarchical Embedding (PSICHE) For Particle Reconstruction 
 outcome: Developed new approach for clustering particles produced in high energy collisions in space and time 
 highlights: 
